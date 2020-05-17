@@ -7,7 +7,7 @@ import java.util.Random;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import streamapi.pojo.DataItem;
 
-public class StreamingSource implements SourceFunction<DataItem> {
+public class MyStreamingSource implements SourceFunction<DataItem> {
 
     private boolean isRun = true;
 

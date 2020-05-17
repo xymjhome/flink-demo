@@ -1,4 +1,4 @@
-package streamapi;
+package streamapi.operator;
 
 
 import org.apache.flink.api.common.functions.FilterFunction;
@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import streamapi.pojo.DataItem;
-import streamapi.source.StreamingSource;
+import streamapi.source.MyStreamingSource;
 
 public class FliterDemo {
 
@@ -15,7 +15,7 @@ public class FliterDemo {
             .getExecutionEnvironment();
 
         DataStreamSource<DataItem> streamSource = environment
-            .addSource(new StreamingSource());
+            .addSource(new MyStreamingSource());
 
         SingleOutputStreamOperator<DataItem> filter = streamSource
             .filter(new FilterFunction<DataItem>() {

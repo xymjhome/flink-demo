@@ -1,4 +1,4 @@
-package streamapi;
+package streamapi.operator;
 
 
 import com.google.common.collect.Lists;

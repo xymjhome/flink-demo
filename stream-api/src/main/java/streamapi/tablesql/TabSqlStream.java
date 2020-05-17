@@ -1,4 +1,4 @@
-package streamapi;
+package streamapi.tablesql;
 
 
 import com.google.common.collect.Lists;
@@ -16,7 +16,7 @@ import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.java.StreamTableEnvironment;
 import streamapi.pojo.DataItem;
-import streamapi.source.StreamingSource;
+import streamapi.source.MyStreamingSource;
 
 @Slf4j
 public class TabSqlStream {
@@ -31,7 +31,7 @@ public class TabSqlStream {
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment
             .create(environment, environmentSettings);
 
-        SingleOutputStreamOperator<DataItem> source = environment.addSource(new StreamingSource())
+        SingleOutputStreamOperator<DataItem> source = environment.addSource(new MyStreamingSource())
             .map(value -> value);
 
         SplitStream<DataItem> split = source.split(new OutputSelector<DataItem>() {

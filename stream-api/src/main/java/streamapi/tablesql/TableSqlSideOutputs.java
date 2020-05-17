@@ -1,4 +1,4 @@
-package streamapi;
+package streamapi.tablesql;
 
 
 import org.apache.flink.api.common.typeinfo.TypeHint;
@@ -13,7 +13,7 @@ import org.apache.flink.table.api.java.StreamTableEnvironment;
 import org.apache.flink.util.Collector;
 import org.apache.flink.util.OutputTag;
 import streamapi.pojo.DataItem;
-import streamapi.source.StreamingSource;
+import streamapi.source.MyStreamingSource;
 
 public class TableSqlSideOutputs {
 
@@ -23,7 +23,7 @@ public class TableSqlSideOutputs {
 
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(environment);
 
-        DataStream<DataItem> streamOperator = environment.addSource(new StreamingSource())
+        DataStream<DataItem> streamOperator = environment.addSource(new MyStreamingSource())
             .map(value -> value);
 
         /**

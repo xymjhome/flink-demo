@@ -23,15 +23,20 @@ public class ConsumerDemo {
 
         Consumer<Long, String> consumer = createConsumer();
         while (true) {
-            ConsumerRecords<Long, String> records = consumer.poll(Duration.ofSeconds(1000));
-            log.error("count:" + records.count());
-            if (records.count() == 0) {
-                log.error("miss record");
+            try {
+
+                ConsumerRecords<Long, String> records = consumer.poll(Duration.ofSeconds(1000));
+                log.error("count:" + records.count());
+                if (records.count() == 0) {
+                    log.error("miss record");
+                }
+                records.forEach(record -> {
+                    log.error(String.format("record key:%s value:%s patition:%s offset:%s",
+                        record.key(), record.value(), record.partition(), record.offset()));
+                });
+            } catch (Exception e) {
+                log.error(e.getMessage());
             }
-            records.forEach(record -> {
-                log.error(String.format("record key:%s value:%s patition:%s offset:%s",
-                    record.key(), record.value(), record.partition(), record.offset()));
-            });
         }
 
     }
@@ -57,9 +62,9 @@ public class ConsumerDemo {
         KafkaConsumer<Long, String> consumer = new KafkaConsumer<>(properties);
 
         //设置消费指定topic下的指定partition
-        consumer.assign(Lists.newArrayList(new TopicPartition(Constant.TOPIC_NAME, 1)));
+        //consumer.assign(Lists.newArrayList(new TopicPartition(Constant.TOPIC_NAME, 1)));
 
-        //consumer.subscribe(Lists.newArrayList(Constant.TOPIC_NAME));
+        consumer.subscribe(Lists.newArrayList(Constant.TOPIC_NAME));
 
         return consumer;
     }

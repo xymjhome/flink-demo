@@ -21,4 +21,7 @@ public class Constant {
 
     public static Integer MAX_POLL_RECORDS = 1;
 
+
+    public static String SENSOR_TOPIC = "sensor_topic";
+
 }

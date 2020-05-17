@@ -1,14 +1,13 @@
-package streamapi;
+package streamapi.operator;
 
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 import streamapi.pojo.DataItem;
-import streamapi.source.StreamingSource;
+import streamapi.source.MyStreamingSource;
 
 public class FlatMapDemo {
 
@@ -17,7 +16,7 @@ public class FlatMapDemo {
             .getExecutionEnvironment();
 
         DataStreamSource<DataItem> streamSource = environment
-            .addSource(new StreamingSource());
+            .addSource(new MyStreamingSource());
 
         SingleOutputStreamOperator<String> map = streamSource
             .flatMap(new FlatMapFunction<DataItem, String>() {
