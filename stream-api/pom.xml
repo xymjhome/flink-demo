@@ -58,6 +58,15 @@
       <groupId>org.apache.flink</groupId>
       <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.bahir/flink-connector-redis -->
+    <dependency>
+      <groupId>org.apache.bahir</groupId>
+      <artifactId>flink-connector-redis_2.11</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+
     <dependency>
       <groupId>com.kafka.demo</groupId>
       <artifactId>kafka</artifactId>
@@ -89,7 +98,6 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
-
   </dependencies>
 
 

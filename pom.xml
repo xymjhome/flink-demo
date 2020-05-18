@@ -69,6 +69,14 @@
         <version>${flink.version}</version>
       </dependency>
 
+      <!-- https://mvnrepository.com/artifact/org.apache.bahir/flink-connector-redis -->
+      <dependency>
+        <groupId>org.apache.bahir</groupId>
+        <artifactId>flink-connector-redis_2.11</artifactId>
+        <version>1.0</version>
+      </dependency>
+
+
 
 
       <!-- Add logging framework, to produce console output when running in the IDE. -->

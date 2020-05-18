@@ -14,18 +14,12 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import kafka.utils.Constant;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import streamapi.pojo.Sensor;
+import streamapi.util.KafkaPropertiesUtil;
 
 public class KafkaSource {
 
     public static void main(String[] args) throws Exception {
-        Properties properties = new Properties();
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, Constant.KAFKA_BROKERS);
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, Constant.GROUP_ID_CONFIG);
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        //properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, Constant.OFFSET_RESET_LATEST);
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
-            Constant.OFFSET_RESET_EARLIER);//从最开始offset读取数据，没生效
+        Properties properties = KafkaPropertiesUtil.getKafkaProperties(Constant.KAFKA_BROKERS);
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment
             .getExecutionEnvironment();
