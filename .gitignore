@@ -36,3 +36,4 @@ hs_err_pid*
 stream-api/target/generated-sources/
 word-count/target/generated-sources/
 docker/zk-multiple-kafka-multiple
+docker/es-nginx-kibana/es
