@@ -19,6 +19,7 @@ import org.elasticsearch.client.Requests;
 import streamapi.pojo.Sensor;
 import streamapi.source.FileSource;
 import streamapi.util.JsonToMapUtil;
+import streamapi.util.ParseFileDataUtil;
 
 @Slf4j
 public class EsSink {
@@ -26,14 +27,8 @@ public class EsSink {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment
             .getExecutionEnvironment();
-        URL url = FileSource.class.getClassLoader().getResource("sensor_data.txt");
-        DataStreamSource<String> fileSource = env.readTextFile(url.getPath());
-        SingleOutputStreamOperator<Sensor> sensor = fileSource.map(line -> {
-            String[] split = line.split(",");
-            return new Sensor(split[0],
-                Long.parseLong(split[1].trim()),
-                Double.parseDouble(split[2].trim()));
-        });
+        SingleOutputStreamOperator<Sensor> sensor =
+            ParseFileDataUtil.getSensorFileSourcer(env, "sensor_data.txt");
 
         sensor.printToErr();
 
