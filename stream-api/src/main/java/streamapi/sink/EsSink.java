@@ -2,11 +2,8 @@ package streamapi.sink;
 
 
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import java.net.URL;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.RuntimeContext;
-import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkFunction;
@@ -17,9 +14,8 @@ import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.Requests;
 import streamapi.pojo.Sensor;
-import streamapi.source.FileSource;
 import streamapi.util.JsonToMapUtil;
-import streamapi.util.ParseFileDataUtil;
+import streamapi.util.ParseSourceDataUtil;
 
 @Slf4j
 public class EsSink {
@@ -28,7 +24,7 @@ public class EsSink {
         StreamExecutionEnvironment env = StreamExecutionEnvironment
             .getExecutionEnvironment();
         SingleOutputStreamOperator<Sensor> sensor =
-            ParseFileDataUtil.getSensorFileSourcer(env, "sensor_data.txt");
+            ParseSourceDataUtil.getSensorFileSource(env, "sensor_data.txt");
 
         sensor.printToErr();
 

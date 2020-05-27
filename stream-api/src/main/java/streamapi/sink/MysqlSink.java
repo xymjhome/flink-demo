@@ -4,13 +4,12 @@ package streamapi.sink;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import org.apache.flink.api.common.functions.RichFunction;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import streamapi.pojo.Sensor;
-import streamapi.util.ParseFileDataUtil;
+import streamapi.util.ParseSourceDataUtil;
 
 public class MysqlSink {
 
@@ -19,7 +18,7 @@ public class MysqlSink {
             .getExecutionEnvironment();
 
         SingleOutputStreamOperator<Sensor> sensor =
-            ParseFileDataUtil.getSensorFileSourcer(env, "sensor_data.txt");
+            ParseSourceDataUtil.getSensorFileSource(env, "sensor_data.txt");
 
 
         sensor.addSink(new MysqlJdbcSink());
