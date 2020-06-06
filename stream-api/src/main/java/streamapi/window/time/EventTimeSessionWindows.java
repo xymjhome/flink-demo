@@ -75,8 +75,6 @@ public class EventTimeSessionWindows {
          *  session window 生成窗口策略:
          *      window_start_time: event_time
          *      window_end_time: 最后一个不在下一个会话周期内的event_time + gap
-         *
-         *      001,1590732687000
          */
         SingleOutputStreamOperator<Tuple6<String, Integer,
             String, String, String, String>> window = sourceWatermark
