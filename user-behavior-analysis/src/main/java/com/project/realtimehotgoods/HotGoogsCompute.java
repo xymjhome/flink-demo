@@ -4,9 +4,10 @@ package com.project.realtimehotgoods;
 import com.project.pojo.ItemViewCount;
 import com.project.pojo.UserBehavior;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
+import org.apache.commons.io.FileUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
-import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
 import org.apache.flink.api.java.typeutils.PojoTypeInfo;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
@@ -21,8 +22,12 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 public class HotGoogsCompute {
 
     public static void main(String[] args) throws Exception {
-        URL resource = HotGoogsCompute.class.getClassLoader().getResource("UserBehavior.csv");
-        Path filePath = Path.fromLocalFile(new File(resource.toURI()));
+
+        String file = HotGoogsCompute.class.getClassLoader().getResource("UserBehavior.csv").getFile();
+        Path filePath = Path.fromLocalFile(new File(file));
+
+        //URL resource = HotGoogsCompute.class.getClassLoader().getResource("UserBehavior.csv");
+        //Path filePath = Path.fromLocalFile(new File(resource.toURI()));
         PojoTypeInfo<UserBehavior> typeInfo = (PojoTypeInfo)TypeExtractor.createTypeInfo(UserBehavior.class);
         String[] fieldOrder = new String[]{"userId", "itemId", "categoryId", "behavior", "timestamp"};
         PojoCsvInputFormat<UserBehavior> csvInputFormat = new PojoCsvInputFormat<>(

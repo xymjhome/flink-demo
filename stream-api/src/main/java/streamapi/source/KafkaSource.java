@@ -25,13 +25,13 @@ public class KafkaSource {
             .getExecutionEnvironment();
 
         FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer<>(
-            Constant.SENSOR_TOPIC, new SimpleStringSchema(),
+            "sensor", new SimpleStringSchema(),
             properties);
 
         /**
          * Flink从topic中最初的数据开始消费
         */
-        //consumer.setStartFromEarliest();
+        consumer.setStartFromEarliest();
 
         /**
          * Flink从topic中指定的offset开始，这个比较复杂，需要手动指定offset
@@ -60,7 +60,7 @@ public class KafkaSource {
         /**
          * Flink从topic中指定的group上次消费的位置开始消费，所以必须配置group.id参数
          */
-        consumer.setStartFromGroupOffsets();
+        //consumer.setStartFromGroupOffsets();
 
 
         DataStreamSource<String> kafkaSource = env.addSource(consumer);

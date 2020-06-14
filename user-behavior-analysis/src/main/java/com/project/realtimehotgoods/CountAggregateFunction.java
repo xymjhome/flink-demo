@@ -15,7 +15,7 @@ public class CountAggregateFunction implements AggregateFunction<UserBehavior, L
 
     @Override
     public Long add(UserBehavior value, Long accumulator) {
-        log.error("aggregate behavior:" + value.getItemId());
+        //log.error("aggregate behavior:" + value.getItemId());
         return accumulator + 1;
     }
 

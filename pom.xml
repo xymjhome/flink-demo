@@ -12,6 +12,7 @@
     <module>stream-api</module>
     <module>user-behavior-analysis</module>
     <module>kafka</module>
+    <module>doris-operate</module>
   </modules>
 
   <properties>
