@@ -1,8 +1,8 @@
-package com.project.realtimehotgoods;
+package com.analysis.project.hotitems.filesource;
 
 
+import com.analysis.project.pojo.ItemViewCount;
 import com.google.common.collect.Lists;
-import com.project.pojo.ItemViewCount;
 import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.List;
@@ -53,6 +53,8 @@ public class TopNItemsProcessFunction extends KeyedProcessFunction<Tuple, ItemVi
         for (ItemViewCount itemViewCount : itemViewCountListState.get()) {
             itemViewCounts.add(itemViewCount);
         }
+
+        itemViewCountListState.clear();
 
         List<ItemViewCount> countList = itemViewCounts.stream()
             .sorted(Comparator.comparingLong(ItemViewCount::getViewCount).reversed())

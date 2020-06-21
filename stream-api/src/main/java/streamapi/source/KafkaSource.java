@@ -25,7 +25,7 @@ public class KafkaSource {
             .getExecutionEnvironment();
 
         FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer<>(
-            "sensor", new SimpleStringSchema(),
+            Constant.SENSOR_TOPIC, new SimpleStringSchema(),
             properties);
 
         /**

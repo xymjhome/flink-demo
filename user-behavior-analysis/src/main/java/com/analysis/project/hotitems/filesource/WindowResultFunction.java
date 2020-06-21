@@ -1,7 +1,7 @@
-package com.project.realtimehotgoods;
+package com.analysis.project.hotitems.filesource;
 
 
-import com.project.pojo.ItemViewCount;
+import com.analysis.project.pojo.ItemViewCount;
 import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple1;
 import org.apache.flink.streaming.api.functions.windowing.WindowFunction;

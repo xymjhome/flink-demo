@@ -1,7 +1,7 @@
-package com.project.realtimehotgoods;
+package com.analysis.project.hotitems.filesource;
 
 
-import com.project.pojo.UserBehavior;
+import com.analysis.project.pojo.UserBehavior;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.AggregateFunction;
 

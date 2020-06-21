@@ -1,12 +1,9 @@
-package com.project.realtimehotgoods;
+package com.analysis.project.hotitems.filesource;
 
 
-import com.project.pojo.ItemViewCount;
-import com.project.pojo.UserBehavior;
+import com.analysis.project.pojo.ItemViewCount;
+import com.analysis.project.pojo.UserBehavior;
 import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import org.apache.commons.io.FileUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
 import org.apache.flink.api.java.typeutils.PojoTypeInfo;

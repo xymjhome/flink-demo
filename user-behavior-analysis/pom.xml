@@ -47,6 +47,19 @@
       <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+
 
     <!-- Add logging framework, to produce console output when running in the IDE. -->
     <!-- These dependencies are excluded from the application JAR by default. -->
@@ -68,6 +81,12 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 
@@ -80,6 +99,8 @@
         <includes>
           <include>**/*.csv</include>
           <include>**/*.properties</include>
+          <include>**/*.txt</include>
+          <include>**/*.log</include>
         </includes>
       </resource>
     </resources>
@@ -132,7 +153,7 @@
               </filters>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.project.realtimehotgoods.HotGoogsCompute</mainClass>
+                  <mainClass>com.analysis.project.hotitems.kafkasource.KafkaSourceHotGoodsCompute</mainClass>
                 </transformer>
               </transformers>
             </configuration>

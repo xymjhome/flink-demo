@@ -102,7 +102,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>com.project.realtimehotgoods.HotGoogsCompute</mainClass>
+                  <mainClass>com.analysis.project.hotitems.kafkasource.KafkaSourceHotGoodsCompute</mainClass>
                 </transformer>
               </transformers>
             </configuration>
