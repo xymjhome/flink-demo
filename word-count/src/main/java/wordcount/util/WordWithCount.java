@@ -4,6 +4,7 @@ package wordcount.util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -11,4 +12,10 @@ import lombok.NoArgsConstructor;
 public class WordWithCount {
     public String word;
     public long count;
+    public String demo;
+
+    public WordWithCount(String word, long count) {
+        this.word = word;
+        this.count = count;
+    }
 }
