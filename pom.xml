@@ -13,6 +13,7 @@
     <module>user-behavior-analysis</module>
     <module>kafka</module>
     <module>doris-operate</module>
+    <module>hbase-api</module>
   </modules>
 
   <properties>

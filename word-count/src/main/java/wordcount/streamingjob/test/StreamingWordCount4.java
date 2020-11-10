@@ -30,7 +30,7 @@ public class StreamingWordCount4 {
             .socketTextStream("127.0.0.1", 8080, "\n");
 
         DataStream<WordWithCount> count = streamSource
-            .flatMap(new ChildrenFlatMapDemo());
+            .flatMap(new ChildrenHolderFlatMap(new ChildrenFlatMapDemo()));
 
         count.print();
 
