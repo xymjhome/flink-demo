@@ -16,7 +16,7 @@ public class HBaseUtil {
     public static Connection getConnection() throws IOException {
         //配置连接信息
         Configuration configuration = HBaseConfiguration.create();
-        configuration.set("hbase.zookeeper.quorum", "myhbase");//主机名称
+        configuration.set("hbase.zookeeper.quorum", "hbase-region");//主机名称
         configuration.set("zookeeper.znode.parent", "/hbase");
         configuration.set("hbase.zookeeper.property.clientPort", "2181");
 

@@ -17,7 +17,7 @@ import org.apache.hadoop.hbase.client.TableDescriptorBuilder;
  */
 public class CreateTable {
 
-    private static final String TABLE_NAME = "emp";
+    private static final String TABLE_NAME = "emp22";
     public static void main(String[] args) throws Exception {
 
         System.out.println("start");

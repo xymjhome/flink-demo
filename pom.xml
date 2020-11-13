@@ -14,6 +14,8 @@
     <module>kafka</module>
     <module>doris-operate</module>
     <module>hbase-api</module>
+    <module>hbase-1.2.6</module>
+    <module>hive-api</module>
   </modules>
 
   <properties>
