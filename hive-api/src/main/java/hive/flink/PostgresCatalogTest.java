@@ -19,63 +19,66 @@ import java.util.stream.Stream;
 /**
  * PostgresCatalog example
  */
-public class PostgresCatalogTest{
-	public static void main(String[] args) throws TableNotExistException{
-		StreamExecutionEnvironment bsEnv = StreamExecutionEnvironment.getExecutionEnvironment();
-		bsEnv.enableCheckpointing(10000);
-		bsEnv.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
-		StreamTableEnvironment tEnv = StreamTableEnvironment.create(bsEnv);
+public class PostgresCatalogTest {
 
-		String catalogName = "mycatalog";
-		String defaultDatabase = "metastore";
-		String username = "hive";
-		String pwd = "hive";
-		String baseUrl = "jdbc:postgresql://localhost:5432/";
+    public static void main(String[] args) throws TableNotExistException {
+        StreamExecutionEnvironment bsEnv = StreamExecutionEnvironment.getExecutionEnvironment();
+        bsEnv.enableCheckpointing(10000);
+        bsEnv.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+        StreamTableEnvironment tEnv = StreamTableEnvironment.create(bsEnv);
 
-		PostgresCatalog postgresCatalog = (PostgresCatalog) JdbcCatalogUtils.createCatalog(
-				catalogName,
-				defaultDatabase,
-				username,
-				pwd,
-				baseUrl);
+        String catalogName = "mycatalog";
+        String defaultDatabase = "metastore";
+        String username = "hive";
+        String pwd = "hive";
+        String baseUrl = "jdbc:postgresql://localhost:5432/";
 
+        PostgresCatalog postgresCatalog = (PostgresCatalog) JdbcCatalogUtils.createCatalog(
+            catalogName,
+            defaultDatabase,
+            username,
+            pwd,
+            baseUrl);
 
-		tEnv.registerCatalog(postgresCatalog.getName(), postgresCatalog);
-		tEnv.useCatalog(postgresCatalog.getName());
+        tEnv.registerCatalog(postgresCatalog.getName(), postgresCatalog);
+        tEnv.useCatalog(postgresCatalog.getName());
 
-		System.out.println("list databases :");
-		String[] databases = tEnv.listDatabases();
-		Stream.of(databases).forEach(System.out::println);
-		System.out.println("--------------------- :");
+        System.out.println("list databases :");
+        String[] databases = tEnv.listDatabases();
+        Stream.of(databases).forEach(System.out::println);
+        System.out.println("--------------------- :");
 
-		tEnv.useDatabase(defaultDatabase);
-		System.out.println("list tables :");
-		String[] tables = tEnv.listTables(); // 也可以使用  postgresCatalog.listTables(defaultDatabase);
+        tEnv.useDatabase(defaultDatabase);
+        System.out.println("list tables :");
+        String[] tables = tEnv.listTables(); // 也可以使用  postgresCatalog.listTables(defaultDatabase);
 //		Stream.of(tables).forEach(System.out::println);
-		for (int i = 0; i < tables.length; i++) {
-			System.out.println(i + "-->" + tables[i]);
+        for (int i = 0; i < tables.length; i++) {
+            System.out.println(i + "-->" + tables[i]);
 
-		}
+        }
 
-		System.out.println("list functions :");
-		String[] functions = tEnv.listFunctions();
-		Stream.of(functions).forEach(System.out::println);
+        System.out.println("list functions :");
+        String[] functions = tEnv.listFunctions();
+        Stream.of(functions).forEach(System.out::println);
 
-		CatalogBaseTable catalogBaseTable = postgresCatalog.getTable(new ObjectPath(
-				defaultDatabase,
-				tables[40]));
 
-		TableSchema tableSchema = catalogBaseTable.getSchema();
-		System.out.println("tableSchema --------------------- :");
-		System.out.println(tableSchema);
+        //todo  down code exception  need debug
+        CatalogBaseTable catalogBaseTable = postgresCatalog.getTable(new ObjectPath(
+            defaultDatabase,
+//				tables[40]));
+            "TBLS"));
+
+        TableSchema tableSchema = catalogBaseTable.getSchema();
+        System.out.println("tableSchema --------------------- :");
+        System.out.println(tableSchema);
 
 //
 //
-		System.out.println("before insert  --------------------- :");
-		List<Row> results = Lists.newArrayList(tEnv.sqlQuery("select * from " + tables[40])
-		                                           .execute()
-		                                           .collect());
-		results.stream().forEach(System.out::println);
+        System.out.println("before insert  --------------------- :");
+        List<Row> results = Lists.newArrayList(tEnv.sqlQuery("select * from " + tables[40])
+            .execute()
+            .collect());
+        results.stream().forEach(System.out::println);
 //
 //		tEnv.executeSql("insert into table1 values (3,'c')");
 //
@@ -85,5 +88,5 @@ public class PostgresCatalogTest{
 //		                                            .collect());
 //		results1.stream().forEach(System.out::println);
 
-	}
+    }
 }
